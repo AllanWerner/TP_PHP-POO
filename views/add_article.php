@@ -11,7 +11,7 @@ ob_start();
             <?= $headTitle ?>
         </h1>
 
-        <form action="/articles/update" method="POST">
+        <form action="/articles/add" method="POST">
             <label for="title">Titre de l'article</label>
             <input type="text" id="title" name="title" />
             <label for="author">Auteur de l'article</label>

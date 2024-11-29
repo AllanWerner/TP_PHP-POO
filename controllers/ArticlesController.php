@@ -34,6 +34,11 @@ class ArticlesController{
         require_once self::$globalTemplatePath ;
     }
 
+    public static function new(){
+        require_once ROOT."/views/add_article.php";
+        require_once self::$globalTemplatePath ;
+    }
+
     public static function update(int $id){
 
         $article = Article::getById($id);        
@@ -41,6 +46,32 @@ class ArticlesController{
         require_once ROOT."/views/update_article.php";
         require_once self::$globalTemplatePath ;
     }
+
+    public static function addArticle(){
+      
+        $title = isset($_POST["title"]) && !empty($_POST["title"]) ?  $_POST["title"] : null;      
+        $author= isset($_POST["author"]) && !empty($_POST["author"]) ?  $_POST["author"] : null;      
+        $content = isset($_POST["content"]) && !empty($_POST["content"]) ?  $_POST["content"] : null;      
+        
+
+        if( is_null($title) || is_null($author) || is_null($content)){
+            ErrorsController::launchError(404);
+            exit;
+        }
+
+        Article::add(
+            title: $title,
+            content: $content,
+            author: $author,
+        );
+
+        header("Location:/articles");
+        exit;
+
+        require_once ROOT."/views/add_article.php";
+        require_once self::$globalTemplatePath ;
+    }
+
 
     public static function updateArticle(){
 

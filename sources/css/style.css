@@ -69,11 +69,16 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 body {
+  color: white;
   background-color: var(--secondary-color);
   color: var(--primary-color);
   font-family: system-ui, sans-serif;
+  text-align: center;
   font-size:17px;
   line-height:180%;
+  margin: 0;
+  padding: 0;
+
 }
 
 body.cooking-theme {
@@ -413,5 +418,70 @@ form select option {
 
   .burger {
       display: flex;
-  }
+  }  
 }
+
+.container {
+  min-width:300px;
+  width:300px;
+  max-width:300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #ffcc00;
+  border-radius: 10px;
+  background: linear-gradient(145deg, #333, #444);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.container h1 {
+  font-size:120%;
+  color: #ffcc00;
+}
+
+.slot-machine {
+  min-width:100%;
+  width:100%;
+  max-width:100%;
+  display: flex;
+  justify-content: center;
+  gap: .4rem;
+  margin: 20px 0;
+}
+
+.reel {
+  max-width: 80px;
+  max-height: 80px;
+  line-height:1.25;
+  aspect-ratio:1/1;
+  font-size: 200%;
+  border: 3px solid #ffcc00;
+  border-radius: 10px;
+  background-color: #333;
+  box-shadow: 0 5px #111;
+}
+
+.container button {
+  font-size: 120%;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ffcc00;
+  color: #222;
+  cursor: pointer;
+  box-shadow: 0 5px #aaa;
+  transition: transform 0.1s ease;
+}
+
+.container button:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px #aaa;
+}
+
+#result {
+  font-size: 100%;
+  margin-top: 20px;
+  font-weight: bold;
+}
+  
+  

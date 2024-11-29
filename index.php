@@ -25,6 +25,7 @@ use Models\Router;
 use Controllers\ArticlesController;
 use Controllers\ErrorsController;
 use Controllers\BlogController;
+use Controllers\MachineController;
 
 $article = new Article(BDD::connect());
 
@@ -73,7 +74,13 @@ switch(true){
   break;
 
   case(str_contains($uri, "/articles")):
-    if($idParam && !str_contains($uri, "/update")){
+    if(!$idParam && str_contains($uri, "/add")){
+      $router->get("/articles/add", ArticlesController::addArticle());
+      exit;
+    }else if(!$idParam && str_contains($uri, "/new")){
+      $router->get("/articles/new", ArticlesController::new());
+      exit;
+    }else if($idParam && !str_contains($uri, "/update")){
       $router->get("/articles/$idParam", ArticlesController::getById($idParam));
       exit;
     }else if($idParam && str_contains($uri, "/update")){
@@ -87,6 +94,18 @@ switch(true){
     exit;}
     $router->get("/articles", ArticlesController::getList());
   break;
+
+  //Gestion de la machine à rouleaux 
+  case(str_contains($uri, "/slot-machine")):
+    if(str_contains($uri, "/play")){
+      $router->get("/slot-machine/play", MachineController::spin());
+      exit;
+    }else{
+      $router->post("/slot-machine", MachineController::view());
+      exit;
+    }
+    break;
+
 
   default:
     ErrorsController::launchError(404);
